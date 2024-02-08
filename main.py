@@ -40,7 +40,14 @@ Launcher.create_table_book_authors(DB_NAME)
 Launcher.create_table_book_categories(DB_NAME)
 
 
-def search_books(api_key: str, query: str, num_books: int):
+def search_books(query: str, num_books: int, api_key: str = API_KEY):
+    """Function to fetch for books in Google Books API by the provided query and include it to the database.
+    
+    Args:
+        query(str): The query to search for books.
+        num_books(int): The maximum number of books to return.
+        api_key(str): Google Books API secret key.
+    """
     
     if num_books > MAX_NUM_BOOKS:
         return print(f"Maximum number of books allowed is 40 but you have provided {num_books}.")
@@ -231,6 +238,6 @@ if __name__ == "__main__":
     for book in books:
         count += 1
         print(f"{count}/{len(books)} Searching: {book}")
-        search_books(API_KEY, book, 40)
+        search_books(book, 40)
     
     
